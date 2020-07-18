@@ -1,14 +1,6 @@
 package com.king.contactdb_raghav_c0780996_android.helperclasses;
 
 
-
-
-
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,12 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.king.contactdb_raghav_c0780996_android.R;
+import com.king.contactdb_raghav_c0780996_android.activities.AddNewContactActivity;
 import com.king.contactdb_raghav_c0780996_android.database.ContactDatabase;
-import com.king.contactdb_raghav_c0780996_android.database.DataAccessObject;
-import com.king.contactdb_raghav_c0780996_android.helperclasses.Contact;
 
 import java.util.List;
 
@@ -53,7 +49,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.contact_cell,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.cell_contact,parent,false);
         return new ViewHolder(view);
     }
 
@@ -70,15 +66,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 new AlertDialog.Builder(context)
                         .setTitle("Delete contact")
                         .setMessage("Are you sure you want to delete this contact?")
-                        // Specifying a listener allows you to take an action before dismissing the dialog.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 deleteItem( position );
                             }
                         })
 
-                        // A null listener allows the button to dismiss the dialog and take no further action.
                         .setNegativeButton(android.R.string.no, null)
                         .show();
             }
@@ -88,7 +82,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             @Override
             public void onClick(View view) {
 
-                Intent myintent = new Intent(context, AddContactActivity.class);
+                Intent myintent = new Intent(context, AddNewContactActivity.class);
                 myintent.putExtra("contact", currPerson);
                 context.startActivity(myintent);
 

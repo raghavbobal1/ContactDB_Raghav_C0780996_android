@@ -27,6 +27,6 @@ public abstract class ContactDatabase extends RoomDatabase {
         }
         return uInstance;
     }
-
+    public abstract ContactDatabase daoObject();
 }
 
